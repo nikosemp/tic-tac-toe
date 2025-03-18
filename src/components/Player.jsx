@@ -5,9 +5,12 @@ export default function Player({initialName, symbol, isActive, onNameChange}){
     const [isEditing, setIsEditing] = useState(false);
 
     function handleEditClick() {
-        setIsEditing((editing) => !editing);
-        if(isEditing){
-            onNameChange(symbol, playerName);
+        /* setIsEditing((editing) => !editing); */
+        if (!isEditing || (isEditing && playerName.trim() !== '')) {
+            setIsEditing((editing) => !editing);
+        }
+        if (isEditing && playerName.trim() !== '') {
+                onNameChange(symbol, playerName);
         }
     }
 
@@ -21,13 +24,15 @@ export default function Player({initialName, symbol, isActive, onNameChange}){
         editablePlayerName = <input type='text' required value={playerName} onChange={handleChange}/>
     }
 
+    const isSaveDisabled = isEditing && playerName.trim() === '';
+
     return(
         <li className={isActive ? 'active' : undefined}>
             <span className="player">
                 {editablePlayerName}
                 <span className='player-symbol'>{symbol}</span>
             </span>
-            <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
+            <button onClick={handleEditClick} disabled={isSaveDisabled}>{isEditing ? 'Save' : 'Edit'}</button>
         </li>
     )
 }
