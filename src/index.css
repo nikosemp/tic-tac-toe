@@ -10,6 +10,7 @@ html {
 
   color: #ebe7ef;
 
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -49,6 +50,7 @@ h1 {
 
 #game-container {
   max-width: 45rem;
+  min-width: 520px;
   margin: 3rem auto;
   padding: 2rem;
   border-radius: 6px;
